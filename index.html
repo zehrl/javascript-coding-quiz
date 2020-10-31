@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/style.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="" id="viewHighscores">Veiw Highscores</a>
+    
+    <div class="flexContainer">
+        <div class="container">
+
+
+
+            <!-- START MENU -->
+            <div class="startMenu">
+                <h1>Welcome to the Javascript Coding Quiz!</h1>
+                <p>You will be asked a series of multiple choice questions about Javascript
+                    (how fun and exhilirating!). You will be timed, so try to hurry and answer all of the questions!
+                    Be careful however, as your time remaining will decrease each time you answer a question incorrectly.
+                </p>
+                <button id="start" class="btn startMenuBtn">Start</button>
+            </div>
+
+            <!-- QUESTION CARD -->
+            <div class="questionCard hidden">
+                <span>Time left: <span>0</span> seconds</span>
+                <h2>Question goes here</h2>
+                <div>
+                    <button class="btn">option 1</button>
+                    <button class="btn">option 2</button>
+                    <button class="btn">option 3</button>
+                    <button class="btn">option 4</button>
+                </div>
+                <span>Wrong! or Correct!</span>
+            </div>
+
+            <!-- QUIZ END MENU -->
+            <div class="quizEndMenu hidden">
+                <!-- All done! -->
+                <h1>All done!</h1>
+                <!-- your score is: wef -->
+                <span>Your score was: <span>22</span>.</span>
+                <!-- initial caption for box -->
+                <form>
+                    <p>Enter your initials: </p>
+                    <input type="text">
+                    <input type="submit" class="btn">
+                </form>
+                <!-- initial enter box -->
+                <!-- submit button -->
+            </div>
+
+            <!-- HIGHSCORE MENU -->
+            <div class="highschoreMenu hidden">
+                <!-- highschores title -->
+                <h1>Highscores</h1>
+                <!-- ul of higschores -->
+                <ul>
+                    <li>LZ - 20 points</li>
+                    <li>DB - 17 points</li>
+                    <li>LB - 16 points</li>
+                </ul>
+                <!-- "go back" button -->
+                <button class="btn">Go Back</button>
+                <!-- "clear highscores" button -->
+                <button class="btn">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>
