@@ -1,26 +1,43 @@
 // DOM Initializing
-var startMenuEl = document.querySelector(".startMenu");
-var questionCardEl = document.querySelector(".questionCard");
-var quizEndMenuEl = document.querySelector(".quizEndMenu");
-var highScoreMenu = document.querySelector(".highScoreMenu")
-
-
-var startMenuBtn = document.querySelector("#startMenuBtn");
-var optionParentEl = document.querySelector("#optionParent");
 var timeEl = document.querySelector("#time")
+
+var startMenuEl = document.querySelector(".startMenu");
+var startMenuBtn = document.querySelector("#startMenuBtn");
+
+var questionCardEl = document.querySelector(".questionCard");
+var questionEl = document.querySelector("#question");
+var optionParentEl = document.querySelector("#optionParent");
+
+var quizEndMenuEl = document.querySelector(".quizEndMenu");
+
+var highScoreMenuEl = document.querySelector(".highScoreMenu")
+
+
+
+
+
 
 // Initialize Variables
 var score = 0;
 var secondsRemaining;
 
+var questions = [
+    {
+        question: "What's your favorite color?",
+        answers: ["blue", "red", "yellow", "green"],
+        correctAnswer: "blue"
+    },
+];
+
 // TESTS
 function startQuiz() {
     hideMenu(startMenuEl);
     showMenu(questionCardEl);
+    nextQuestion();
 
-    secondsRemaining = 3;
+    secondsRemaining = 30;
     timeEl.textContent = secondsRemaining;
-    setInterval(function (){
+    setInterval(function () {
         secondsRemaining--;
         timeEl.textContent = secondsRemaining;
         if (secondsRemaining <= 0) {
@@ -32,8 +49,18 @@ function startQuiz() {
 }
 
 function nextQuestion() {
+    //select random question
+    questionEl.textContent = questions[0].question;
+    for (let i = 0; i < questions[0].answers.length; i++) {
+        optionParentEl.children[i].textContent = questions[0].answers[i];
+    }
+
+
+
+    //remove it from the 
+
     //if on start menu
-        //then 
+    //then 
     //if on questionCard then change question
 }
 
@@ -48,25 +75,21 @@ function showMenu(element) {
 // TESTS
 
 // Fill in questions
-var questions = [
-    {question: "What's your favorite color?",
-    answers: ["blue", "red", "yellow", "green"],
-    correctAnswer: "blue"},
-    ]; 
+
 
 // Display start button and wait for user to click start button
 
 // User clicks start button, hide start menu elements
 
 // Display question and 4 options and wait for user to click an option
-    // question[0]
+// question[0]
 
 // User clicks an answer, display "Wrong" or "Correct"
-    // update score if correct
-    // decrease time if incorrect
+// update score if correct
+// decrease time if incorrect
 
 // Display question and 4 options and wait for user to click an option
-    // question [1]
+// question [1]
 
 // ...
 

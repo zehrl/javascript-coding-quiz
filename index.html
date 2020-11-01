@@ -32,14 +32,14 @@
             <!-- QUESTION CARD -->
             <div class="questionCard hidden">
                 <span>Time left: <span id="time">0</span> seconds</span>
-                <h2>Question goes here</h2>
+                <h2 id="question">Question goes here</h2>
                 <div id="optionParent">
                     <button class="btn">option 1</button>
                     <button class="btn">option 2</button>
                     <button class="btn">option 3</button>
                     <button class="btn">option 4</button>
                 </div>
-                <span>Wrong! or Correct!</span>
+                <span id="result hidden">Wrong! or Correct!</span>
             </div>
 
             <!-- QUIZ END MENU -->
@@ -52,8 +52,9 @@
                 <form>
                     <p>Enter your initials: </p>
                     <input type="text">
-                    <input type="submit" class="btn">
+                    
                 </form>
+                <button class="btn">Submit</button>
                 <!-- initial enter box -->
                 <!-- submit button -->
             </div>
