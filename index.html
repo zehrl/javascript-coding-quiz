@@ -26,14 +26,14 @@
                     (how fun and exhilirating!). You will be timed, so try to hurry and answer all of the questions!
                     Be careful however, as your time remaining will decrease each time you answer a question incorrectly.
                 </p>
-                <button id="start" class="btn startMenuBtn">Start</button>
+                <button id="startMenuBtn" class="btn">Start</button>
             </div>
 
             <!-- QUESTION CARD -->
             <div class="questionCard hidden">
-                <span>Time left: <span>0</span> seconds</span>
+                <span>Time left: <span id="time">0</span> seconds</span>
                 <h2>Question goes here</h2>
-                <div>
+                <div id="optionParent">
                     <button class="btn">option 1</button>
                     <button class="btn">option 2</button>
                     <button class="btn">option 3</button>
@@ -59,7 +59,7 @@
             </div>
 
             <!-- HIGHSCORE MENU -->
-            <div class="highschoreMenu hidden">
+            <div class="highScoreMenu hidden">
                 <!-- highschores title -->
                 <h1>Highscores</h1>
                 <!-- ul of higschores -->

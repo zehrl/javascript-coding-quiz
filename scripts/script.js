@@ -1,23 +1,49 @@
 // DOM Initializing
 var startMenuEl = document.querySelector(".startMenu");
-var startMenuBtn = document.querySelector("#startMenuBtn")
+var questionCardEl = document.querySelector(".questionCard");
+var quizEndMenuEl = document.querySelector(".quizEndMenu");
+var highScoreMenu = document.querySelector(".highScoreMenu")
+
+
+var startMenuBtn = document.querySelector("#startMenuBtn");
+var optionParentEl = document.querySelector("#optionParent");
+var timeEl = document.querySelector("#time")
 
 // Initialize Variables
 var score = 0;
-var secondsRemaining = 75;
-
+var secondsRemaining;
 
 // TESTS
 function startQuiz() {
-    console.log("FIRED!")
-    // next card
+    hideMenu(startMenuEl);
+    showMenu(questionCardEl);
+
+    secondsRemaining = 3;
+    timeEl.textContent = secondsRemaining;
+    setInterval(function (){
+        secondsRemaining--;
+        timeEl.textContent = secondsRemaining;
+        if (secondsRemaining <= 0) {
+            hideMenu(questionCardEl);
+            showMenu(quizEndMenuEl)
+        }
+    }, 1000);
 
 }
 
-function nextCard() {
-    
+function nextQuestion() {
+    //if on start menu
+        //then 
+    //if on questionCard then change question
 }
 
+function hideMenu(element) {
+    element.style.display = "None"
+}
+
+function showMenu(element) {
+    element.style.display = "inline-block"
+}
 
 // TESTS
 
@@ -49,4 +75,5 @@ var questions = [
 
 
 // ------ EVENT HANDLERS ------
-startMenuEl.addEventListener("click", startQuiz)
+startMenuBtn.addEventListener("click", startQuiz)
+optionParentEl.addEventListener("click", nextQuestion)
