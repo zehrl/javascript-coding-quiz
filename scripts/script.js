@@ -41,7 +41,7 @@ function initializeQuestions() {
         {
             question: "How do you initialize a variable?",
             answers: ["var x = 1;", "set x = 1;", "dim x = 1", "by the power of the gods, x shall be 1"],
-            correctAnswer: "var x = 1"
+            correctAnswer: "var x = 1;"
         },
         {
             question: "What year was Javascript invented?",
@@ -55,6 +55,8 @@ function initializeQuestions() {
 function startQuiz() {
     score = 0;
     scoreEl.textContent = score;
+    finalScoreEl.textContent = score;
+
     secondsRemaining = 30;
     initializeQuestions();
 
@@ -120,6 +122,7 @@ function gradeQuestion(event) {
         resultEl.textContent = "Correct!";
         score++;
         scoreEl.textContent = score;
+        finalScoreEl.textContent = score;
     } else {
         resultEl.textContent = "Wrong!";
         secondsRemaining -= 5;
