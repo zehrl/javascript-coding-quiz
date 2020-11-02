@@ -13,24 +13,24 @@
 
 <body>
     <span id="viewHighscores">Veiw Highscores</span>
-    
+
     <div class="flexContainer">
         <div class="container">
-
-
 
             <!-- START MENU -->
             <div class="startMenu">
                 <h1>Welcome to the Javascript Coding Quiz!</h1>
                 <p>You will be asked a series of multiple choice questions about Javascript
                     (how fun and exhilirating!). You will be timed, so try to hurry and answer all of the questions!
-                    Be careful however, as your time remaining will decrease each time you answer a question incorrectly.
+                    Be careful however, as your time remaining will decrease each time you answer a question
+                    incorrectly.
                 </p>
                 <button id="startMenuBtn" class="btn">Start</button>
             </div>
 
             <!-- QUESTION CARD -->
             <div class="questionCard hidden">
+                <span>Score: <span id="score"></span></span>
                 <span>Time left: <span id="time">0</span> seconds</span>
                 <h2 id="question">Question goes here</h2>
                 <div id="optionParent">
@@ -39,7 +39,7 @@
                     <button class="btn">option 3</button>
                     <button class="btn">option 4</button>
                 </div>
-                <span id="result hidden">Wrong! or Correct!</span>
+                <span id="result"></span>
             </div>
 
             <!-- QUIZ END MENU -->
@@ -47,12 +47,12 @@
                 <!-- All done! -->
                 <h1>All done!</h1>
                 <!-- your score is: wef -->
-                <span>Your score was: <span>22</span>.</span>
+                <span>Your score was: <span id="finalScore"></span>.</span>
                 <!-- initial caption for box -->
                 <form>
                     <p>Enter your initials: </p>
                     <input type="text">
-                    
+
                 </form>
                 <button id="submitInitialsBtn" class="btn">Submit</button>
                 <!-- initial enter box -->

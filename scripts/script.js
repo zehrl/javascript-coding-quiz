@@ -8,9 +8,12 @@ var startMenuBtn = document.querySelector("#startMenuBtn");
 var questionCardEl = document.querySelector(".questionCard");
 var questionEl = document.querySelector("#question");
 var optionParentEl = document.querySelector("#optionParent");
+var resultEl = document.querySelector("#result");
+var scoreEl = document.querySelector("#score");
 
 var quizEndMenuEl = document.querySelector(".quizEndMenu");
 var submitInitialsBtn = document.querySelector("#submitInitialsBtn");
+var finalScoreEl = document.querySelector("#finalScore");
 
 var highScoreMenuEl = document.querySelector(".highScoreMenu");
 var goBackBtn = document.querySelector("#goBackBtn");
@@ -20,6 +23,8 @@ var score;
 var secondsRemaining;
 var timer;
 var questions;
+var randIndex;
+var outcomeTimer;
 
 function initializeQuestions() {
     questions = [
@@ -42,13 +47,14 @@ function initializeQuestions() {
             question: "What year was Javascript invented?",
             answers: ["1995", "2000", "2005", "2010"],
             correctAnswer: "1995"
-        },
+        }
     ];
 }
 
 
 function startQuiz() {
     score = 0;
+    scoreEl.textContent = score;
     secondsRemaining = 30;
     initializeQuestions();
 
@@ -68,16 +74,14 @@ function startQuiz() {
 }
 
 function nextQuestion() {
-    console.log("Fired!")
-    
     // end quiz if there are no questions left
     if (questions.length <= 0) {
         clearInterval(timer);
-        changeMenu(highScoreMenuEl);
+        changeMenu(quizEndMenuEl);
         return;
     }
-    
-    var randIndex = Math.floor(questions.length * Math.random())
+
+    randIndex = Math.floor(questions.length * Math.random())
     console.log(`randIndex = ${randIndex}`);
 
     //select random question
@@ -85,11 +89,6 @@ function nextQuestion() {
     for (let i = 0; i < questions[randIndex].answers.length; i++) {
         optionParentEl.children[i].textContent = questions[randIndex].answers[i];
     }
-
-
-
-    //remove it from the list
-    questions.splice(randIndex, 1);
 
 }
 
@@ -108,10 +107,48 @@ function changeMenu(element) {
     element.style.display = "inline-block"
 }
 
+function gradeQuestion(event) {
+    var countdown = 1; 
+    
+    //Check if user selected correct option
+    outcome = (questions[randIndex].correctAnswer == event.target.textContent);
+    console.log(`Player answer: ${event.target.textContent}, Correct Answer: ${questions[randIndex].correctAnswer}`);
+
+
+    //Call resultDisplay function
+    if (outcome) {
+        resultEl.textContent = "Correct!";
+        score++;
+        scoreEl.textContent = score;
+    } else {
+        resultEl.textContent = "Wrong!";
+        secondsRemaining -= 5;
+    }
+    outcomeTimer = setInterval(function(){
+        
+
+        if (countdown <= 0) {
+            resultEl.textContent = "";
+            clearInterval(outcomeTimer);
+        }
+        countdown--;
+    }, 1000);
+
+    //remove question from the list
+    questions.splice(randIndex, 1);
+}
+
+
 // ------ EVENT HANDLERS ------
 startMenuBtn.addEventListener("click", startQuiz)
 
-optionParentEl.addEventListener("click", nextQuestion)
+optionParentEl.addEventListener("click", function () {
+    resultEl.textContent = "";
+    clearInterval(outcomeTimer);
+    gradeQuestion(event);
+    nextQuestion();
+
+});
 
 submitInitialsBtn.addEventListener("click", submitInitials)
 
