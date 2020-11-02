@@ -31,7 +31,10 @@ body {
 #viewHighscores {
     display: inline-block;
     padding: 5px;
+    cursor: pointer;
     margin: 25px;
+    text-decoration: underline;
+    color: blue;
 }
 
 h1 {
