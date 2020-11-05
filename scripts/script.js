@@ -14,9 +14,11 @@ var scoreEl = document.querySelector("#score");
 var quizEndMenuEl = document.querySelector(".quizEndMenu");
 var submitInitialsBtn = document.querySelector("#submitInitialsBtn");
 var finalScoreEl = document.querySelector("#finalScore");
+var initialsEl = document.querySelector("#initials");
 
 var highScoreMenuEl = document.querySelector(".highScoreMenu");
 var goBackBtn = document.querySelector("#goBackBtn");
+var highscoreListEl = document.querySelector("#highscoreList");
 
 // Initialize Variables
 var score;
@@ -25,6 +27,39 @@ var timer;
 var questions;
 var randIndex;
 var outcomeTimer;
+var highscore = [
+    {
+        initials: "",
+        score: ""
+    },
+    {
+        initials: "",
+        score: ""
+    },
+    {
+        initials: "",
+        score: ""
+    },
+];
+
+updateHighscores();
+
+function updateHighscores() {
+    //Delete list items? what if there's a new highscore?
+
+
+    // for each higscore, add it too the highscore list
+    for (let i = 0; i < 3; i++) {
+        console.log("Highscore added!");
+
+        if (highscore[i].initials !== "" && highscore[i].score !== "") {
+            var highscoreListItem = document.createElement("li");
+            highscoreListItem.textContent = `${highscore[i].initials} - ${highscore[i].score} points`;
+            highscoreListEl.appendChild(highscoreListItem);
+        }
+    }
+}
+
 
 function initializeQuestions() {
     questions = [
@@ -96,6 +131,9 @@ function nextQuestion() {
 
 function submitInitials() {
     //do stuff here
+    highscore[0].initials = initialsEl.value;
+    highscore[0].score = score;
+    updateHighscores();
 
     // Change to highscore menu
     changeMenu(highScoreMenuEl);
@@ -110,8 +148,8 @@ function changeMenu(element) {
 }
 
 function gradeQuestion(event) {
-    var countdown = 1; 
-    
+    var countdown = 1;
+
     //Check if user selected correct option
     outcome = (questions[randIndex].correctAnswer == event.target.textContent);
     console.log(`Player answer: ${event.target.textContent}, Correct Answer: ${questions[randIndex].correctAnswer}`);
@@ -127,8 +165,9 @@ function gradeQuestion(event) {
         resultEl.textContent = "Wrong!";
         secondsRemaining -= 5;
     }
-    outcomeTimer = setInterval(function(){
-        
+
+    //Controls "Correct! or Wrong! text timing"
+    outcomeTimer = setInterval(function () {
 
         if (countdown <= 0) {
             resultEl.textContent = "";
