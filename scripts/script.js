@@ -42,8 +42,6 @@ var highscore = [
     },
 ];
 
-updateHighscores();
-
 function updateHighscores() {
     //Delete list items? what if there's a new highscore?
 
@@ -130,6 +128,7 @@ function nextQuestion() {
 }
 
 function submitInitials() {
+    
     //do stuff here
     highscore[0].initials = initialsEl.value;
     highscore[0].score = score;
@@ -180,6 +179,8 @@ function gradeQuestion(event) {
     questions.splice(randIndex, 1);
 }
 
+// ------ INITIAL CALLS ------
+updateHighscores();
 
 // ------ EVENT HANDLERS ------
 startMenuBtn.addEventListener("click", startQuiz)
@@ -192,7 +193,11 @@ optionParentEl.addEventListener("click", function () {
 
 });
 
-submitInitialsBtn.addEventListener("click", submitInitials)
+submitInitialsBtn.addEventListener("click", submitInitials);
+initialsEl.addEventListener("submit", function(event){
+    event.preventDefault();
+    submitInitials; 
+})
 
 viewHighscoresEl.addEventListener("click", function () {
     changeMenu(highScoreMenuEl);
