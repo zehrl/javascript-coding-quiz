@@ -92,11 +92,6 @@ function updateHighscores() {
 function initializeQuestions() {
     questions = [
         {
-            question: "What's your favorite color?",
-            answers: ["blue", "red", "yellow", "green"],
-            correctAnswer: "blue"
-        },
-        {
             question: "How do you create a comment in Javascript?",
             answers: ["//", "##", "~", "-"],
             correctAnswer: "//"
@@ -110,6 +105,91 @@ function initializeQuestions() {
             question: "What year was Javascript invented?",
             answers: ["1995", "2000", "2005", "2010"],
             correctAnswer: "1995"
+        },
+        {
+            question: "What is not considered an arithmetic operator?",
+            answers: ["+", "%", "++", "="],
+            correctAnswer: "="
+        },
+        {
+            question: "How do you call an object property?",
+            answers: ["object/property", "object*property", "object.property", "object>property"],
+            correctAnswer: "object.property"
+        },
+        {
+            question: "What events can be used in JavaScript?",
+            answers: ["double click", "mouse over", "mouse down", "All of the Above"],
+            correctAnswer: "All of the Above"
+        },
+        {
+            question: "How are strings defined?",
+            answers: ["x = \"string\"", "x = \'string\'","x = \`string\`", "All of the Above"],
+            correctAnswer: "All of the Above"
+        },
+        {
+            question: "How are varibles printed with console.log?",
+            answers: ["console.log(\"${variable}\")", "console.log(variable)", "console.log(*variable*)", "console.log(\"variable\")"],
+            correctAnswer: "console.log(variable)"
+        },
+        {
+            question: "How are varibles printed in console.log alongside text using tick marks?",
+            answers: ["console.log(\`result = $variable\`)", "console.log(\`result = <variable>\`)", "console.log(\`result = \"variable\"\`)", "console.log(\`result = ${variable}\`)"],
+            correctAnswer: "console.log(\`result = ${variable}\`)"
+        },
+        {
+            question: "How do you reference the first index of a string?",
+            answers: ["string(0)", "string(1)", "string[0]", "string[1]"],
+            correctAnswer: "string[0]"
+        },
+        {
+            question: "How would you get the value of Pi in JavaScript?",
+            answers: ["Value.PI", "PI", "Math.PI", "none of the above"],
+            correctAnswer: "Math.PI"
+        },
+        {
+            question: "How would you generate a random number (0 to 1) in JavaScript?",
+            answers: ["Value.Random", "Random()", "Math.random()", "set.random(0, 1)"],
+            correctAnswer: "Math.random()"
+        },
+        {
+            question: "How would you round a decimal down to the nearest integer?",
+            answers: ["Math.roundDown()", "Math.round(\"down\")", "Math.floor()", "set.number.toNearestInt(\"roundDown\")"],
+            correctAnswer: "Math.floor()"
+        },
+        {
+            question: "What is a boolean?",
+            answers: ["An error type associated with string methods", "A javascript data type that accepts \"true\" and \"false\"", "A cute animal", "A type of icecream"],
+            correctAnswer: "A javascript data type that accepts \"true\" and \"false\""
+        },
+        {
+            question: "What comparison operator checks if the values are equal to each other?",
+            answers: ["x > y", "x $ y", "x == y", "x @ y"],
+            correctAnswer: "x == y"
+        },
+        {
+            question: "What comparison operator checks if the values are NOT equal to each other?",
+            answers: ["x !$ y", "x ~= y", "x !=== y", "not(x == y)"],
+            correctAnswer: "x !=== y"
+        },
+        {
+            question: "Which piece of code is used with the \"switch\" statement to indicate the default block of code to run if none of the cases are true?",
+            answers: ["default: ", "standard: ", "else: ", "this: "],
+            correctAnswer: "default: "
+        },
+        {
+            question: "Which of the following can be an object method?",
+            answers: ["object.method", "object(method)", "method(object)", "object.method()"],
+            correctAnswer: "object.method()"
+        },
+        {
+            question: "How would you write a function?",
+            answers: ["function(){console.log(\"hello!\")}", "function(a, b){return a+b}", "()=>{console.log(\"hello!\")}", "All of the Above"],
+            correctAnswer: "All of the Above"
+        },
+        {
+            question: "Which of the following is an integer?",
+            answers: ["0.2", "zero", "1", "1/32"],
+            correctAnswer: "1"
         }
     ];
 }
@@ -120,7 +200,7 @@ function startQuiz() {
     scoreEl.textContent = score;
     finalScoreEl.textContent = score;
 
-    secondsRemaining = 30;
+    secondsRemaining = 45;
     initializeQuestions();
 
     changeMenu(questionCardEl);
