@@ -5,7 +5,6 @@
 
 ## Table of Contents (Optional)
 * [Description](#Description)
-* [Installation](#Installation)
 * [Instructions](#Instructions)
 * [Questions](#Questions)
 * [License](#License)
@@ -27,7 +26,7 @@ Welcome to the JavaScript Coding Quiz! In this application, you will be asked a 
 
 3. Answer each question by clicking on 1 of the 4 options listed below
 
-![question page](images/question-page)
+![question page](images/question-page.png)
 
 4. Once you answer all questions or the time runs out, you'll be sent to the highscore entry page
 
@@ -35,7 +34,7 @@ Welcome to the JavaScript Coding Quiz! In this application, you will be asked a 
 
 5. You'll then be sent to the highscore page which will display the top 3 highscores and initials
 
-![highscore page](images/highscore-page)
+![highscore page](images/highscore-page.png)
 
 Have fun!
 
