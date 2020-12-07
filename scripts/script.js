@@ -19,42 +19,72 @@ var initialsEl = document.querySelector("#initials");
 var highScoreMenuEl = document.querySelector(".highScoreMenu");
 var goBackBtn = document.querySelector("#goBackBtn");
 var highscoreListEl = document.querySelector("#highscoreList");
+var firstPlace = document.querySelector("#firstPlace");
+var secondPlace = document.querySelector("#secondPlace")
+var thirdPlace = document.querySelector("#thirdPlace")
 
 // Initialize Variables
 var score;
+var initials;
 var secondsRemaining;
 var timer;
 var questions;
 var randIndex;
 var outcomeTimer;
-var highscore = [
-    {
-        initials: "",
-        score: ""
-    },
-    {
-        initials: "",
-        score: ""
-    },
-    {
-        initials: "",
-        score: ""
-    },
-];
 
 function updateHighscores() {
-    //Delete list items? what if there's a new highscore?
+    // Set local storage highscores to temp object and "parse"
+    var highscores = JSON.parse(localStorage.getItem("highscores"));
+    console.log(`highscores local storage retrieved as: ${highscores}`);
 
+    // only perform if highscore exists
+    if (highscores !== null) {
+        console.log("we have highscore local storage!")
+        // find top 3 scores by looping
+        var topThree = [];
 
-    // for each higscore, add it too the highscore list
-    for (let i = 0; i < 3; i++) {
-        console.log("Highscore added!");
+        // loop through highscores 3 times
+        for (let i = 0; i < 3; i++) {
+            // initialize max as -1
+            var max = -1;
 
-        if (highscore[i].initials !== "" && highscore[i].score !== "") {
-            var highscoreListItem = document.createElement("li");
-            highscoreListItem.textContent = `${highscore[i].initials} - ${highscore[i].score} points`;
-            highscoreListEl.appendChild(highscoreListItem);
+            // loop for each item
+            for (let j = 0; j < highscores.length; j++) {
+                // if item score is > max then set as max
+                if (highscores[j].score > max) {
+                    max = highscores[j].score;
+                    var maxIndex = j;
+                }
+                
+            }
+            if (max !== -1) {
+                
+                topThree[i] = {
+                    initials: highscores[maxIndex].initials,
+                    score: max
+                };
+
+            } else {
+                topThree[i] = {
+                    initials: "N/A",
+                    score: "N/A"
+                };
+            }
+            
+            // delete item from highscores object 
+            highscores.splice(maxIndex, 1);
+
         }
+
+        console.log("topThree = ", topThree);
+
+        // update "top 3 highscores" elements        
+        firstPlace.innerHTML = `1. ${topThree[0].initials} - ${topThree[0].score}`;
+        secondPlace.innerHTML = `2. ${topThree[1].initials} - ${topThree[1].score}`;
+        thirdPlace.innerHTML = `3. ${topThree[2].initials} - ${topThree[2].score}`;
+
+        // if array index item is null, then set to "N/A"
+
     }
 }
 
@@ -128,14 +158,28 @@ function nextQuestion() {
 }
 
 function submitInitials() {
-    
-    //do stuff here
-    highscore[0].initials = initialsEl.value;
-    highscore[0].score = score;
-    updateHighscores();
+    var currentHighscore = {};
+    var highscores = [];
+
+    // Add score & initials to local storage
+    initials = initialsEl.value;
+    currentHighscore.initials = initials;
+    currentHighscore.score = score;
+
+    if (localStorage.getItem("highscores")) {
+        console.log("Highscores local storage exists...")
+        highscores = JSON.parse(localStorage.getItem("highscores"));
+    }
+
+    highscores.push(currentHighscore);
+    console.log(`highscores object =`, highscores);
+
+    // Set highscores in local storage
+    localStorage.setItem("highscores", JSON.stringify(highscores));
 
     // Change to highscore menu
     changeMenu(highScoreMenuEl);
+    updateHighscores();
 }
 
 function changeMenu(element) {
@@ -179,7 +223,7 @@ function gradeQuestion(event) {
     questions.splice(randIndex, 1);
 }
 
-// ------ INITIAL CALLS ------
+// ------ INIT CALLS ------
 updateHighscores();
 
 // ------ EVENT HANDLERS ------
@@ -194,9 +238,9 @@ optionParentEl.addEventListener("click", function () {
 });
 
 submitInitialsBtn.addEventListener("click", submitInitials);
-initialsEl.addEventListener("submit", function(event){
+initialsEl.addEventListener("submit", function (event) {
     event.preventDefault();
-    submitInitials; 
+    submitInitials;
 })
 
 viewHighscoresEl.addEventListener("click", function () {
